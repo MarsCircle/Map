@@ -1,0 +1,180 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.flightmap.map.Dao.MapCountallMapper" >
+  <resultMap id="BaseResultMap" type="com.flightmap.map.Pojo.MapCountall" >
+    <constructor >
+      <idArg column="countall_id" jdbcType="BIGINT" javaType="java.lang.Long" />
+      <arg column="json_data_current" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="json_data_today" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="all_count_today" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="count_current" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="departure_airport_most_current" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="arrival_airport_most_current" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="departure_airport_most_today" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="arrival_airport_most_today" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="create_time" jdbcType="TIMESTAMP" javaType="java.util.Date" />
+      <arg column="update_time" jdbcType="TIMESTAMP" javaType="java.util.Date" />
+    </constructor>
+  </resultMap>
+  <sql id="Base_Column_List" >
+    countall_id, json_data_current, json_data_today, all_count_today, count_current, 
+    departure_airport_most_current, arrival_airport_most_current, departure_airport_most_today, 
+    arrival_airport_most_today, create_time, update_time
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from map_countall
+    where countall_id = #{countallId,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from map_countall
+    where countall_id = #{countallId,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.flightmap.map.Pojo.MapCountall" >
+    insert into map_countall ( json_data_current, json_data_today,
+      all_count_today, count_current)
+    values ( #{jsonDataCurrent,jdbcType=VARCHAR}, #{jsonDataToday,jdbcType=VARCHAR},
+      #{allCountToday,jdbcType=VARCHAR}, #{countCurrent,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.flightmap.map.Pojo.MapCountall" >
+    insert into map_countall
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="countallId != null" >
+        countall_id,
+      </if>
+      <if test="jsonDataCurrent != null" >
+        json_data_current,
+      </if>
+      <if test="jsonDataToday != null" >
+        json_data_today,
+      </if>
+      <if test="allCountToday != null" >
+        all_count_today,
+      </if>
+      <if test="countCurrent != null" >
+        count_current,
+      </if>
+      <if test="departureAirportMostCurrent != null" >
+        departure_airport_most_current,
+      </if>
+      <if test="arrivalAirportMostCurrent != null" >
+        arrival_airport_most_current,
+      </if>
+      <if test="departureAirportMostToday != null" >
+        departure_airport_most_today,
+      </if>
+      <if test="arrivalAirportMostToday != null" >
+        arrival_airport_most_today,
+      </if>
+      <if test="createTime != null" >
+        create_time,
+      </if>
+      <if test="updateTime != null" >
+        update_time,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="countallId != null" >
+        #{countallId,jdbcType=BIGINT},
+      </if>
+      <if test="jsonDataCurrent != null" >
+        #{jsonDataCurrent,jdbcType=VARCHAR},
+      </if>
+      <if test="jsonDataToday != null" >
+        #{jsonDataToday,jdbcType=VARCHAR},
+      </if>
+      <if test="allCountToday != null" >
+        #{allCountToday,jdbcType=VARCHAR},
+      </if>
+      <if test="countCurrent != null" >
+        #{countCurrent,jdbcType=VARCHAR},
+      </if>
+      <if test="departureAirportMostCurrent != null" >
+        #{departureAirportMostCurrent,jdbcType=VARCHAR},
+      </if>
+      <if test="arrivalAirportMostCurrent != null" >
+        #{arrivalAirportMostCurrent,jdbcType=VARCHAR},
+      </if>
+      <if test="departureAirportMostToday != null" >
+        #{departureAirportMostToday,jdbcType=VARCHAR},
+      </if>
+      <if test="arrivalAirportMostToday != null" >
+        #{arrivalAirportMostToday,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null" >
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null" >
+        #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.flightmap.map.Pojo.MapCountall" >
+    update map_countall
+    <set >
+      <if test="jsonDataCurrent != null" >
+        json_data_current = #{jsonDataCurrent,jdbcType=VARCHAR},
+      </if>
+      <if test="jsonDataToday != null" >
+        json_data_today = #{jsonDataToday,jdbcType=VARCHAR},
+      </if>
+      <if test="allCountToday != null" >
+        all_count_today = #{allCountToday,jdbcType=VARCHAR},
+      </if>
+      <if test="countCurrent != null" >
+        count_current = #{countCurrent,jdbcType=VARCHAR},
+      </if>
+      <if test="departureAirportMostCurrent != null" >
+        departure_airport_most_current = #{departureAirportMostCurrent,jdbcType=VARCHAR},
+      </if>
+      <if test="arrivalAirportMostCurrent != null" >
+        arrival_airport_most_current = #{arrivalAirportMostCurrent,jdbcType=VARCHAR},
+      </if>
+      <if test="departureAirportMostToday != null" >
+        departure_airport_most_today = #{departureAirportMostToday,jdbcType=VARCHAR},
+      </if>
+      <if test="arrivalAirportMostToday != null" >
+        arrival_airport_most_today = #{arrivalAirportMostToday,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null" >
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null" >
+        update_time = #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where countall_id = #{countallId,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.flightmap.map.Pojo.MapCountall" >
+    update map_countall
+    set json_data_current = #{jsonDataCurrent,jdbcType=VARCHAR},
+      json_data_today = #{jsonDataToday,jdbcType=VARCHAR},
+      all_count_today = #{allCountToday,jdbcType=VARCHAR},
+      count_current = #{countCurrent,jdbcType=VARCHAR},
+      departure_airport_most_current = #{departureAirportMostCurrent,jdbcType=VARCHAR},
+      arrival_airport_most_current = #{arrivalAirportMostCurrent,jdbcType=VARCHAR},
+      departure_airport_most_today = #{departureAirportMostToday,jdbcType=VARCHAR},
+      arrival_airport_most_today = #{arrivalAirportMostToday,jdbcType=VARCHAR},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      update_time = #{updateTime,jdbcType=TIMESTAMP}
+    where countall_id = #{countallId,jdbcType=BIGINT}
+  </update>
+  <select id="selectByTime" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select
+    <include refid="Base_Column_List" />
+    from map_countall
+    where create_time like <![CDATA['${dateToday,jdbcType=VARCHAR}%']]>
+  </select>
+
+
+  <update id="updateByTime" parameterType="java.lang.String">
+    update map_countall
+    set json_data_current = #{jsonDataCurrent,jdbcType=VARCHAR},
+      json_data_today = #{jsonDataToday,jdbcType=VARCHAR},
+      all_count_today = #{allCountToday,jdbcType=VARCHAR},
+      count_current = #{countCurrent,jdbcType=VARCHAR}
+    where create_time like <![CDATA['${dateToday}%']]>
+  </update>
+
+</mapper>
